@@ -1,0 +1,82 @@
+.card-film {
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+    background-color: #fdfdfd;
+}
+
+.card-film__trailer-link:hover {
+    opacity: 1;
+}
+
+.card-film__image {
+    height: 203px;
+}
+
+.card-film__description {
+    padding: 14px;
+    display: grid;
+    row-gap: 9px;
+    grid-template-columns: 1fr 30px;
+    grid-template-areas:
+        "n b"
+        "d b";
+    align-items: center;
+}
+
+.card-film__name {
+    grid-area: n;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.card-film__like-button {
+    grid-area: b;
+    width: 30px;
+    height: 30px;
+    background-image: url("../../images/favorite.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.card-film__like-button_active {
+    background-image: url("../../images/favorite-active.svg");
+}
+
+.card-film__duration {
+    grid-area: d;
+    font-size: 11px;
+    color: #8b8b8b;
+}
+
+.saved .card-film {
+    cursor: pointer;
+}
+
+.saved .card-film .card-film__like-button {
+    width: 30px;
+    height: 30px;
+    background-image: url("../../images/delete.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+@media screen and (max-width: 1280px) {
+    .card-film__image {
+        height: calc(190px + (203 - 190) * ((100vw - 768px) / (1280 - 768)));
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .card-film__image {
+        height: calc(168px + (190 - 168) * ((100vw - 320px) / (768 - 320)));
+    }
+
+    .card-film__name {
+        font-size: calc(12px + (13 - 12) * ((100vw - 320px) / (768 - 320)));
+    }
+
+    .card-film__duration {
+        font-size: calc(10px + (11 - 10) * ((100vw - 320px) / (768 - 320)));
+    }
+}
