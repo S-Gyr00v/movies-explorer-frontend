@@ -1,0 +1,59 @@
+@import url("./vendor/fonts.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Inter, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  font: inherit;
+  transition: opacity 0.3s;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+
+a:hover {
+  opacity: 0.5;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: calc(1em * -0.04);
+  padding-bottom: 23px;
+  border-bottom: 1px solid #000;
+}
