@@ -4,3 +4,13 @@
     position: relative;
     top: -14px;
 }
+
+.error-button {
+    font-size: 10px;
+    color: #ff4062;
+    position: relative;
+    top: -65px;
+   
+}
+
+

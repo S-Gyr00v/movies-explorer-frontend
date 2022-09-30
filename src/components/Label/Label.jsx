@@ -1,6 +1,6 @@
 import "./Label.css"
 
-function Label({ text, name, type }) {
+function Label({ text, name, type, value, setValue }) {
   return (
     <label className="label">
       <p className="label__text">{text}</p>
@@ -8,6 +8,9 @@ function Label({ text, name, type }) {
         className='label__input'
         type={type}
         name={name}
+        value={value[name] || ""}
+        onInput={setValue}
+        required
       />
     </label>
   );

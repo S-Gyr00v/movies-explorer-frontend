@@ -17,9 +17,10 @@
     border-radius: 3px;
 }
 
-.form__submit-button_disabled {
+.form__submit-button:disabled {
     opacity: 0.5;
     cursor: default;
+    
 }
 
 @media screen and (max-width: 768px) {

@@ -32,11 +32,12 @@
 
 .header__menu-button {
     display: none;
-    width: 28px;
+    width: 28px; 
     height: 23px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    background-image: url(../../images/burger.svg);
 }
 
 .header__profile-button {
@@ -64,7 +65,11 @@
 }
 
 @media screen and (max-width: 768px) {
-    .header .header__profile-button {
+    .header .header__profile-button,
+    .header .header__nav  {
         display: none;
+    }
+    .header__menu-button {
+        display: block;
     }
 }

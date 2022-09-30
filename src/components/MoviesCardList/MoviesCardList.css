@@ -15,6 +15,13 @@
     line-height: 35px;
 }
 
+.movies-not-found {
+    font-size: 24px;
+    text-align: center;
+    margin: 15px 0;
+
+}
+
 @media screen and (max-width: 1280px) {
     .movies-list {
         padding-bottom: calc(80px + (60 - 80) * ((100vw - 768px) / (1280 - 768)));
