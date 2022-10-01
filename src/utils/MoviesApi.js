@@ -1,5 +1,7 @@
+import { SERVER_URL } from "./const"
+
 export function getSavedMovies(token) {
-    return fetch('http:/api./diplomadom.ru/movies', 
+    return fetch(SERVER_URL +'movies', 
     {
       headers: {
       'Content-Type': 'application/json',
@@ -14,7 +16,7 @@ export function getSavedMovies(token) {
 }
 
 export function createMovie(token, movie) {
-  return fetch('http://api.diplomadom.ru/movies', 
+  return fetch(SERVER_URL +'movies', 
   {
     method: "POST",
     headers: {
@@ -31,7 +33,7 @@ export function createMovie(token, movie) {
 }
 
 export function deleteMovie(token, id) {
-  return fetch(`http://api.diplomadom.ru/movies/${id}`, 
+  return fetch(SERVER_URL + `/movies/${id}`, 
   {
     method: "DELETE",
     headers: {
@@ -47,7 +49,7 @@ export function deleteMovie(token, id) {
 }
 
 export function regisration(form) {
-  return fetch('http://api.diplomadom.ru/signup', 
+  return fetch(SERVER_URL + 'signup', 
   {
     method: "POST",
     headers: {
@@ -63,7 +65,7 @@ export function regisration(form) {
 }
 
 export function login(form) {
-  return fetch('http://api.diplomadom.ru/signin', 
+  return fetch(SERVER_URL + 'signin', 
   {
     method: "POST",
     headers: {
@@ -79,7 +81,7 @@ export function login(form) {
 }
 
 export function getInfoUser(token) {
-  return fetch('http://api.diplomadom.ru/users/me', 
+  return fetch(SERVER_URL + 'users/me', 
   {
     headers: {
     'Content-Type': 'application/json',
@@ -94,7 +96,7 @@ export function getInfoUser(token) {
 }
 
 export function getInfoUserUpdate(token, form) {
-  return fetch('http://api.diplomadom.ru/users/me', 
+  return fetch(SERVER_URL + 'users/me', 
   {
     headers: {
     'Content-Type': 'application/json',
