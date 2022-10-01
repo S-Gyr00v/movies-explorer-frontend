@@ -1,9 +1,10 @@
 import './SearchForm.css'
 
 function SearchForm({ searchFormInput, durationButton, setSearchFormInput, setDurationButton }) {
+
     return (
         <section className="search">
-            <form className="search__form from-search">
+            <form className="search__form from-search" onSubmit={evt => evt.preventDefault()}>
                 <input
                     className="from-search__input"
                     type="text"

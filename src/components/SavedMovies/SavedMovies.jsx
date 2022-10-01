@@ -4,6 +4,7 @@ import SearchForm from '../SearchForm/SearchForm'
 import './SavedMovies.css'
 import { useEffect, useState } from 'react'
 import Preloader from '../Preloader/Preloader'
+import { DURATION_SHORT_FILMS } from '../../utils/const'
 
 function SavedMovies({ savedFilms, realizeSavedCards }) {
   const [searchFormInput, setSearchFormInput] = useState('')
@@ -30,31 +31,31 @@ function SavedMovies({ savedFilms, realizeSavedCards }) {
     setFoundedFilms(filterSearchResult(savedFilms))
   }, [searchFormInput, savedFilms, durationButton])
 
-  useEffect(() => {
-    if (foundedFilms.length !== 0)
-      localStorage.setItem(
-        'savedMoviesState',
-        JSON.stringify({ searchFormInput, durationButton, foundedFilms })
-      )
-  }, [foundedFilms])
+  // useEffect(() => {
+  //   if (foundedFilms.length !== 0)
+  //     localStorage.setItem(
+  //       'savedMoviesState',
+  //       JSON.stringify({ searchFormInput, durationButton, foundedFilms })
+  //     )
+  // }, [foundedFilms])
 
-  useEffect(() => {
-    if (localStorage.getItem('savedMoviesState')) {
-      const { searchFormInput, durationButton, foundedFilms } = JSON.parse(
-        localStorage.getItem('savedMoviesState')
-      )
-      setSearchFormInput(searchFormInput)
-      setDurationButton(durationButton)
-      setFoundedFilms(foundedFilms)
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (localStorage.getItem('savedMoviesState')) {
+  //     const { searchFormInput, durationButton, foundedFilms } = JSON.parse(
+  //       localStorage.getItem('savedMoviesState')
+  //     )
+  //     setSearchFormInput(searchFormInput)
+  //     setDurationButton(durationButton)
+  //     setFoundedFilms(foundedFilms)
+  //   }
+  // }, [])
 
   function filterSearchResult(movies) {
     return movies.filter((movie) => {
       const isIncludes = movie.nameRU
         .toLowerCase()
         .includes(searchFormInput.toLowerCase())
-      return durationButton ? isIncludes && movie.duration <= 40 : isIncludes
+      return durationButton ? isIncludes && movie.duration <= DURATION_SHORT_FILMS : isIncludes
     })
   }
 

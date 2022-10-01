@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import { useFormWithValidation } from './../Hooks/useFormWithValidation';
 import { VALIDATION_PARAMS } from '../../utils/const';
 
-function Register({ registrationAccount, serverError }) {
+function Register({ registrationAccount, serverError, isDisabledButton }) {
   const { values, handleChange, errors, isValid } = useFormWithValidation({ name: '', email: '', password: '' })
   const [isValidName, setValidName] = useState(true)
   const [isValidEmail, setValidEmail] = useState(true)
@@ -48,7 +48,7 @@ function Register({ registrationAccount, serverError }) {
           value={values}
         />
         <Error text={errors.password} />
-        <AuthButton isDisabled={!isValid || !isValidEmail || !isValidName} serverError={serverError} />
+        <AuthButton isDisabled={isDisabledButton || !isValid || !isValidEmail || !isValidName} serverError={serverError} />
       </form>
     </AuthLayout>
   );

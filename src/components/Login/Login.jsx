@@ -7,7 +7,7 @@ import { useFormWithValidation } from './../Hooks/useFormWithValidation';
 import Error from '../Error/Error';
 import { VALIDATION_PARAMS } from '../../utils/const';
 
-function Login({ enterInAccount, serverError }) {
+function Login({ enterInAccount, serverError,isDisabledButton }) {
   const { values, handleChange, errors, isValid } = useFormWithValidation({ email: '', password: '' })
   const [isValidEmail, setValidEmail] = useState(true)
 
@@ -42,7 +42,7 @@ function Login({ enterInAccount, serverError }) {
 
         />
         <Error text={errors.password} />
-        <AuthButton isDisabled={!isValid || !isValidEmail} serverError={serverError} />
+        <AuthButton isDisabled={isDisabledButton || !isValid || !isValidEmail} serverError={serverError} />
       </form>
     </AuthLayout>
   );

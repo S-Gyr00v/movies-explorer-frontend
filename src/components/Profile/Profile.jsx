@@ -6,7 +6,7 @@ import "./Profile.css"
 import { VALIDATION_PARAMS } from '../../utils/const';
 import { useState, useEffect } from 'react';
 
-function Profile({ logOut, userUpdate, resultUserUpdate }) {
+function Profile({ logOut, userUpdate, resultUserUpdate,isDisabledButton }) {
   const { currentUser } = useContext(AppContext)
   const { values, handleChange, errors, isValid } = useFormWithValidation({ name: currentUser.name, email: currentUser.email })
   const [isValidName, setValidName] = useState(true)
@@ -57,7 +57,7 @@ function Profile({ logOut, userUpdate, resultUserUpdate }) {
                 className='profile__button'
                 type="button"
                 onClick={() => userUpdate(values)}
-                disabled={!isValid || !isValidEmail || !isValidName ||  currentUser.name === values.name && currentUser.email === values.email}
+                disabled={isDisabledButton || !isValid || !isValidEmail || !isValidName ||  currentUser.name === values.name && currentUser.email === values.email}
               >Редактировать</button>
               <button
                 className='profile__button profile__button_color_pink'

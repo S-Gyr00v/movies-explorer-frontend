@@ -23,6 +23,7 @@ function App() {
   const [resultUserUpdate, setResultUserUpdate] = useState("")
   const [savedFilms, setSavedFilms] = useState([])
   const [loading, setLoading] = useState(true)
+  const [isDisabledButton, setDisabledButton] = useState(false)
 
   const isAuthPage = location.pathname === '/signin' || location.pathname === '/signup'
 
@@ -32,8 +33,10 @@ function App() {
       .then((films) => {
         setSavedFilms(films)
         return films
-      }
-      )
+      })
+      .catch((err) => {
+        if (err.endsWith('401')) logOut()
+      })
   }
 
   useEffect(() => {
@@ -49,6 +52,7 @@ function App() {
   )
 
   function enterInAccount(form) {
+    setDisabledButton(true)
     login(form)
       .then(({ token }) => {
         localStorage.setItem('JWT', token)
@@ -56,8 +60,11 @@ function App() {
       })
       .catch((err) => {
         setServerError("Произошла ошибка")
-
       })
+      .finally(() => {
+        setLoading(false)
+      })
+
   }
 
   function authorisationToken(token) {
@@ -68,19 +75,25 @@ function App() {
         setIsLogin(true)
         if (isAuthPage) navigate("/movies")
       })
+      .catch((err) => {
+        if (err.endsWith('401')) logOut()
+      })
       .finally(() => {
         setLoading(false)
       })
   }
 
   function registrationAccount(form) {
+    setDisabledButton(true)
     regisration(form)
       .then((data) => {
         enterInAccount({ email: form.email, password: form.password })
       })
       .catch((err) => {
         setServerError("Произошла ошибка")
-
+      })
+      .finally(() => {
+        setDisabledButton(false)
       })
   }
 
@@ -89,12 +102,12 @@ function App() {
     setIsLogin(false)
     localStorage.removeItem('JWT')
     localStorage.removeItem('moviesState')
-    localStorage.removeItem('savedMoviesState')
-
+    // localStorage.removeItem('savedMoviesState')
   }
 
   function userUpdate(data) {
     const token = localStorage.getItem('JWT')
+    setDisabledButton(true)
     getInfoUserUpdate(token, data)
       .then((user) => {
         setCurrentUser(user)
@@ -102,7 +115,10 @@ function App() {
       })
       .catch((err) => {
         setResultUserUpdate("Произошла ошибка")
-
+        if (err.endsWith('401')) logOut()
+      })
+      .finally(() => {
+        setDisabledButton(false)
       })
 
 
@@ -137,13 +153,13 @@ function App() {
             path="/profile"
             element={
               <ProtectedRoute isLogin={isLogin} loading={loading}>
-                <Profile logOut={logOut} userUpdate={userUpdate} resultUserUpdate={resultUserUpdate} />
+                <Profile logOut={logOut} userUpdate={userUpdate} resultUserUpdate={resultUserUpdate} isDisabledButton={isDisabledButton} />
               </ProtectedRoute>
             }
           />
 
-          <Route path="/signin" element={<Login enterInAccount={enterInAccount} serverError={serverError} />} />
-          <Route path="/signup" element={<Register registrationAccount={registrationAccount} serverError={serverError} />} />
+          <Route path="/signin" element={<Login enterInAccount={enterInAccount} serverError={serverError} isDisabledButton={isDisabledButton} />} />
+          <Route path="/signup" element={<Register registrationAccount={registrationAccount} serverError={serverError} isDisabledButton={isDisabledButton} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </AppContext.Provider>

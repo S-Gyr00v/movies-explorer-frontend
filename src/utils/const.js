@@ -8,5 +8,6 @@ export const VALIDATION_PARAMS = {
         EMAIL: 'Неправильный формат e-mail',
     }
 }
+export const DURATION_SHORT_FILMS = 40
 
 export const SERVER_URL = 'https://diplom-test23.herokuapp.com/'
